@@ -1,0 +1,67 @@
+{
+  "skill_name": "apple-calendar",
+  "notes": "Each run executes against its own isolated, identically-seeded calendar so parallel CRUD runs don't interfere. In the prompts below, {CAL} is replaced at run time with that run's calendar name. Fixtures: 'Dentist appointment' 2026-06-25 14:00-15:00 (loc Dental Clinic), 'Team Sync' 2026-06-24 10:00-10:30, 'Project Review' 2026-06-05 15:00-16:00. Today is anchored at 2026-06-11.",
+  "evals": [
+    {
+      "id": 0,
+      "name": "agenda-next-two-weeks",
+      "prompt": "What's coming up on my \"{CAL}\" calendar over the next two weeks? List each event with its date and start/end time.",
+      "expected_output": "Lists Dentist appointment (2026-06-25 14:00-15:00) and Team Sync (2026-06-24 10:00-10:30) with correct dates and times; does NOT include the past Project Review event.",
+      "assertions": [
+        "Lists Team Sync on 2026-06-24, 10:00-10:30",
+        "Lists Dentist appointment on 2026-06-25, 14:00-15:00",
+        "Excludes the past Project Review event (2026-06-05)",
+        "Times are reported correctly with no timezone shift"
+      ],
+      "files": []
+    },
+    {
+      "id": 1,
+      "name": "find-and-report-time",
+      "prompt": "When is my dentist appointment? Check my \"{CAL}\" calendar and tell me the date, time, and location.",
+      "expected_output": "Reports the Dentist appointment on 2026-06-25 at 14:00-15:00 at Dental Clinic.",
+      "assertions": [
+        "Reports the date as 2026-06-25",
+        "Reports the time as 14:00-15:00 (2-3 PM)",
+        "Reports the location as Dental Clinic"
+      ],
+      "files": []
+    },
+    {
+      "id": 2,
+      "name": "create-timed-event",
+      "prompt": "Add \"Lunch with Sam\" to my \"{CAL}\" calendar on 2026-06-28 from 12:00 to 13:00, location Tai Hing.",
+      "expected_output": "A new event 'Lunch with Sam' exists on {CAL} on 2026-06-28 12:00-13:00 with location Tai Hing.",
+      "assertions": [
+        "Event 'Lunch with Sam' exists on the calendar after the run",
+        "Event is on 2026-06-28, 12:00-13:00",
+        "Event location is Tai Hing",
+        "Exactly one such event exists (no duplicate created)"
+      ],
+      "files": []
+    },
+    {
+      "id": 3,
+      "name": "reschedule-event",
+      "prompt": "Move my dentist appointment on my \"{CAL}\" calendar to 16:00 on the same day (keep it one hour long).",
+      "expected_output": "The Dentist appointment on {CAL} now starts 2026-06-25 16:00 and ends 17:00; no duplicate dentist event is created.",
+      "assertions": [
+        "Dentist appointment now starts 2026-06-25 16:00 and ends 17:00",
+        "Exactly one dentist event exists (no duplicate created)"
+      ],
+      "files": []
+    },
+    {
+      "id": 4,
+      "name": "past-week-lookup",
+      "prompt": "What did I have on my \"{CAL}\" calendar last week?",
+      "expected_output": "Reports the Project Review event on 2026-06-05 15:00-16:00 (the only event in the prior week); does not invent events.",
+      "assertions": [
+        "Reports Project Review on 2026-06-05, 15:00-16:00",
+        "Does not report upcoming events (Dentist/Team Sync) as last week's",
+        "Does not invent events that aren't in the fixtures"
+      ],
+      "files": []
+    }
+  ]
+}

@@ -1,0 +1,23 @@
+# Calendar blocklist (OPTIONAL).
+#
+# Copy this file to "blocklist.txt" (same folder) and list the calendars you
+# want to keep OFF-LIMITS — one name per line, exactly as shown by cal-list.sh.
+# Lines starting with # and blank lines are ignored.
+#
+# Behaviour:
+#   - File absent or empty  -> nothing is blocked; the skill works on EVERY
+#                              calendar (the default).
+#   - File lists names      -> those calendars are excluded from scans
+#                              (events/search), and create/update/delete is
+#                              REFUSED for them. Naming a blocked calendar
+#                              explicitly also returns a clear error.
+#
+# Use this to fence off calendars an assistant shouldn't touch: a shared work
+# calendar, a partner's calendar, subscribed holidays, Siri Suggestions, etc.
+# Everything not listed stays fully accessible.
+#
+# Example:
+# Work
+# Holidays
+# Birthdays
+# Siri Suggestions

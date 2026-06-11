@@ -1,0 +1,30 @@
+apple-calendar (improved)
+=========================
+
+This skill is derived from and builds upon the "apple-calendar" skill by tyler6204,
+distributed via openclaw / clawhub:
+
+    https://clawskills.sh/skills/tyler6204-apple-calendar
+    Install the original:  npx clawhub install apple-calendar
+
+The original provided the AppleScript-based CRUD/search wrappers for macOS
+Calendar.app and the `clawdbot` skill metadata, both of which this version retains.
+Full credit for the original design and the working AppleScript approach goes to
+tyler6204.
+
+Changes in this version
+-----------------------
+- ISO 8601 date output (round-trips straight back into create/update).
+- Optional config/blocklist.txt to fence off calendars: blocked calendars are
+  excluded from scans and refused for create/update/delete.
+- Past and arbitrary date-range queries: --days N (negatives look back),
+  --from / --to.
+- Calendar-scoped scans and a --limit option for speed.
+- Fixed cal-update.sh: start/end writes are ordered so an event is never
+  transiently inverted (no silent -10025 "start must precede end" failure when
+  moving an event later), and real save errors are no longer swallowed.
+- Expanded SKILL.md: stronger triggering description, macOS Automation-permission
+  setup notes, and recurring-event ("whole series") semantics.
+
+This NOTICE is intentionally NOT referenced from SKILL.md so it is not loaded into
+the model's context at runtime. Please retain it in any redistribution.
