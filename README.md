@@ -1,5 +1,7 @@
 # apple-calendar
 
+[![skills.sh](https://skills.sh/b/K4Lok/apple-calendar)](https://skills.sh/K4Lok/apple-calendar)
+
 A [Claude](https://claude.ai) **skill** for working with the macOS **Calendar.app** from the
 command line. It lets Claude read your schedule and create, move, reschedule, search, and
 delete events — using AppleScript under the hood, so it works against whatever accounts
@@ -36,9 +38,15 @@ Highlights over a plain AppleScript wrapper:
 
 ## Install
 
-Drop the skill folder into the directory your Claude agent loads skills from.
+**Recommended — via the [skills](https://www.skills.sh) CLI** (auto-detects your agent's skills directory):
 
-**Claude Code** (per-user):
+```bash
+npx skills add K4Lok/apple-calendar
+```
+
+**Or clone manually** into the directory your Claude agent loads skills from.
+
+Claude Code (per-user):
 
 ```bash
 git clone https://github.com/K4Lok/apple-calendar.git ~/.claude/skills/apple-calendar
@@ -46,7 +54,7 @@ git clone https://github.com/K4Lok/apple-calendar.git ~/.claude/skills/apple-cal
 
 …or for a single project, clone into that project's `.claude/skills/apple-calendar`.
 
-**openclaw / clawhub-style agents** use `.agents/skills/` instead:
+openclaw / clawhub-style agents use `.agents/skills/` instead:
 
 ```bash
 git clone https://github.com/K4Lok/apple-calendar.git .agents/skills/apple-calendar

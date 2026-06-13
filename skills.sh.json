@@ -1,0 +1,11 @@
+{
+  "$schema": "https://skills.sh/schemas/skills.sh.schema.json",
+  "notGrouped": "bottom",
+  "groupings": [
+    {
+      "title": "Calendar",
+      "description": "Read and manage events in the macOS Calendar.app from the command line.",
+      "skills": ["apple-calendar"]
+    }
+  ]
+}
